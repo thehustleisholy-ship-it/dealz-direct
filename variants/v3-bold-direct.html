@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DealZ Direct — James Green</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --ink: #0a0a08;
+      --paper: #f5f4ef;
+      --amber: #e8a020;
+      --amber-dark: #c47d08;
+      --white: #ffffff;
+      --muted: #888880;
+    }
+
+    body {
+      font-family: 'Space Grotesk', -apple-system, sans-serif;
+      background: var(--ink);
+      color: var(--white);
+      line-height: 1.5;
+    }
+
+    /* HEADER */
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 28px 48px;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+    .logo {
+      font-size: 18px;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+    }
+    .logo-accent { color: var(--amber); }
+    .header-cta a {
+      background: var(--amber);
+      color: var(--ink);
+      padding: 10px 22px;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 13px;
+      letter-spacing: 0.02em;
+      border-radius: 3px;
+      transition: background 0.15s;
+    }
+    .header-cta a:hover { background: var(--amber-dark); }
+
+    /* HERO */
+    .hero {
+      display: grid;
+      grid-template-columns: 1fr 420px;
+      min-height: 80vh;
+    }
+    .hero-left {
+      padding: 72px 48px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      border-right: 1px solid rgba(255,255,255,0.1);
+    }
+    .hero-eyebrow {
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--amber);
+      margin-bottom: 24px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .hero-eyebrow::before {
+      content: '';
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: var(--amber);
+    }
+    .hero-headline {
+      font-size: clamp(48px, 5.5vw, 80px);
+      font-weight: 700;
+      line-height: 1.0;
+      letter-spacing: -0.03em;
+      margin-bottom: 28px;
+    }
+    .hero-headline .accent { color: var(--amber); }
+    .hero-sub {
+      font-size: 17px;
+      color: rgba(255,255,255,0.65);
+      line-height: 1.65;
+      margin-bottom: 44px;
+      max-width: 480px;
+    }
+    .hero-ctas { display: flex; gap: 14px; align-items: center; }
+    .cta-primary {
+      background: var(--amber);
+      color: var(--ink);
+      padding: 16px 32px;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 15px;
+      border-radius: 3px;
+      transition: background 0.15s;
+      letter-spacing: 0.01em;
+    }
+    .cta-primary:hover { background: var(--amber-dark); }
+    .cta-ghost {
+      color: rgba(255,255,255,0.6);
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: color 0.15s;
+    }
+    .cta-ghost:hover { color: white; }
+
+    .hero-right {
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-right img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top center;
+      filter: grayscale(30%) contrast(1.1);
+      opacity: 0.85;
+    }
+    .hero-right-placeholder {
+      width: 100%;
+      height: 100%;
+      min-height: 400px;
+      background: linear-gradient(160deg, #1e1e18 0%, #0a0a08 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 100px;
+    }
+    .hero-right-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to right, var(--ink) 0%, transparent 30%),
+                  linear-gradient(to top, var(--ink) 0%, transparent 40%);
+    }
+    .hero-badge {
+      position: absolute;
+      bottom: 32px;
+      left: 32px;
+      background: var(--amber);
+      color: var(--ink);
+      padding: 12px 18px;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      border-radius: 3px;
+    }
+
+    /* STATS */
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      border-top: 1px solid rgba(255,255,255,0.1);
+    }
+    .stat {
+      padding: 36px 48px;
+      border-right: 1px solid rgba(255,255,255,0.1);
+    }
+    .stat:last-child { border-right: none; }
+    .stat-value {
+      font-size: 40px;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      color: var(--amber);
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+    .stat-label {
+      font-size: 13px;
+      color: rgba(255,255,255,0.5);
+      font-weight: 500;
+    }
+
+    /* SERVICES */
+    .services {
+      padding: 96px 48px;
+      background: var(--paper);
+      color: var(--ink);
+    }
+    .services-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 56px;
+    }
+    .services-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--amber-dark);
+      margin-bottom: 12px;
+    }
+    .services-title {
+      font-size: clamp(28px, 3vw, 40px);
+      font-weight: 700;
+      letter-spacing: -0.025em;
+      line-height: 1.1;
+    }
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+    .service-card {
+      background: var(--ink);
+      color: var(--white);
+      padding: 40px 32px;
+      border-radius: 4px;
+    }
+    .service-icon {
+      font-size: 32px;
+      margin-bottom: 20px;
+      display: block;
+    }
+    .service-title {
+      font-size: 20px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 12px;
+    }
+    .service-body {
+      font-size: 14px;
+      color: rgba(255,255,255,0.6);
+      line-height: 1.65;
+    }
+
+    /* HOW IT WORKS */
+    .how {
+      padding: 96px 48px;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    .how-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--amber);
+      margin-bottom: 40px;
+    }
+    .steps { display: flex; flex-direction: column; gap: 0; }
+    .step {
+      display: grid;
+      grid-template-columns: 56px 1fr;
+      gap: 28px;
+      padding: 32px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+      align-items: start;
+    }
+    .step:first-child { border-top: 1px solid rgba(255,255,255,0.1); }
+    .step-num {
+      font-size: 40px;
+      font-weight: 700;
+      letter-spacing: -0.04em;
+      color: rgba(255,255,255,0.15);
+      line-height: 1;
+    }
+    .step-title {
+      font-size: 20px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 8px;
+    }
+    .step-body {
+      font-size: 14px;
+      color: rgba(255,255,255,0.55);
+      line-height: 1.65;
+    }
+
+    /* CTA BLOCK */
+    .cta-block {
+      background: var(--amber);
+      color: var(--ink);
+      padding: 80px 48px;
+      text-align: center;
+    }
+    .cta-block h2 {
+      font-size: clamp(32px, 4vw, 54px);
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      line-height: 1.05;
+      margin-bottom: 12px;
+    }
+    .cta-block p {
+      font-size: 17px;
+      opacity: 0.75;
+      margin-bottom: 40px;
+    }
+    .cta-contacts {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+    .contact-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--ink);
+      color: white;
+      padding: 16px 28px;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 15px;
+      border-radius: 3px;
+      transition: opacity 0.15s;
+    }
+    .contact-btn:hover { opacity: 0.85; }
+
+    footer {
+      background: var(--ink);
+      border-top: 1px solid rgba(255,255,255,0.1);
+      padding: 28px 48px;
+      display: flex;
+      justify-content: space-between;
+      font-size: 12px;
+      color: rgba(255,255,255,0.35);
+      letter-spacing: 0.04em;
+    }
+
+    @media (max-width: 900px) {
+      header { padding: 20px 24px; }
+      .hero { grid-template-columns: 1fr; }
+      .hero-left { padding: 56px 24px; border-right: none; }
+      .hero-right { min-height: 340px; }
+      .stats { grid-template-columns: 1fr 1fr; }
+      .stat { padding: 24px; }
+      .stats .stat:nth-child(2) { border-right: none; }
+      .services { padding: 64px 24px; }
+      .services-grid { grid-template-columns: 1fr; }
+      .how { padding: 64px 24px; }
+      .cta-block { padding: 64px 24px; }
+      footer { padding: 20px 24px; flex-direction: column; gap: 6px; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="logo">DEALZ<span class="logo-accent">DIRECT</span></div>
+    <div class="header-cta"><a href="mailto:dealzdirect1@gmail.com">Get a quote</a></div>
+  </header>
+
+  <section class="hero">
+    <div class="hero-left">
+      <p class="hero-eyebrow">Freelance Production Consultant</p>
+      <h1 class="hero-headline">Find the<br><span class="accent">deal.</span><br>Deliver the<br>quality.</h1>
+      <p class="hero-sub">James Green cuts through supplier noise and gets you quality production at a price that makes sense. Direct. No layers. No surprises.</p>
+      <div class="hero-ctas">
+        <a href="mailto:dealzdirect1@gmail.com" class="cta-primary">Start a conversation</a>
+        <a href="tel:0625478527" class="cta-ghost">📞 062 547 8527</a>
+      </div>
+    </div>
+    <div class="hero-right">
+      <img src="../james-green.jpg" alt="James Green" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+      <div class="hero-right-placeholder" style="display:none">🔍</div>
+      <div class="hero-right-overlay"></div>
+      <div class="hero-badge">DealZ Direct ✓</div>
+    </div>
+  </section>
+
+  <div class="stats">
+    <div class="stat">
+      <div class="stat-value">100%</div>
+      <div class="stat-label">Direct access to James</div>
+    </div>
+    <div class="stat">
+      <div class="stat-value">0</div>
+      <div class="stat-label">Agency markup layers</div>
+    </div>
+    <div class="stat">
+      <div class="stat-value">Real</div>
+      <div class="stat-label">Supplier relationships</div>
+    </div>
+  </div>
+
+  <section class="services">
+    <div class="services-header">
+      <div>
+        <p class="services-label">What I do</p>
+        <h2 class="services-title">Production consulting.<br>Done direct.</h2>
+      </div>
+    </div>
+    <div class="services-grid">
+      <div class="service-card">
+        <span class="service-icon">🔍</span>
+        <h3 class="service-title">Sourcing & Procurement</h3>
+        <p class="service-body">I find the right suppliers, negotiate the right terms, and make sure quality meets your spec — at a price worth paying.</p>
+      </div>
+      <div class="service-card">
+        <span class="service-icon">⚙️</span>
+        <h3 class="service-title">Production Management</h3>
+        <p class="service-body">End-to-end project management from brief to delivery. Clear milestones, open communication, zero guesswork.</p>
+      </div>
+      <div class="service-card">
+        <span class="service-icon">📊</span>
+        <h3 class="service-title">Cost Optimization</h3>
+        <p class="service-body">Finding where budget is being wasted — and fixing it. Experienced eyes on your supply chain find savings fast.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="how">
+    <p class="how-label">How it works</p>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">01</div>
+        <div>
+          <h3 class="step-title">You brief me directly</h3>
+          <p class="step-body">Tell me what you need — a product sourced, a production run managed, a supplier vetted. I ask the right questions.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">02</div>
+        <div>
+          <h3 class="step-title">I find and evaluate options</h3>
+          <p class="step-body">Using my supplier network and industry knowledge, I identify the best options for your brief, budget, and quality requirements.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">03</div>
+        <div>
+          <h3 class="step-title">You get quality and value</h3>
+          <p class="step-body">Clear recommendations, managed delivery, and the confidence that you're getting the right deal. That's what DealZ Direct means.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-block">
+    <h2>Ready to find a better deal?</h2>
+    <p>Get in touch with James today. Direct. Fast. No fluff.</p>
+    <div class="cta-contacts">
+      <a href="mailto:dealzdirect1@gmail.com" class="contact-btn">✉️ dealzdirect1@gmail.com</a>
+      <a href="tel:0625478527" class="contact-btn">📞 062 547 8527</a>
+    </div>
+  </section>
+
+  <footer>
+    <span>© 2025 James Green / DealZ Direct</span>
+    <span>Freelance Production Consultant</span>
+  </footer>
+
+</body>
+</html>

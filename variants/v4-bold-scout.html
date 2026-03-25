@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>James Green — Production Consultant</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,400;0,600;0,700;0,800;1,600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy: #0e1e3a;
+      --navy-mid: #16305a;
+      --white: #ffffff;
+      --off-white: #f4f2ed;
+      --rule: #e0ded8;
+      --dark: #111116;
+      --orange: #e05c20;
+      --orange-light: #fff1eb;
+      --mid: #6a6a72;
+    }
+
+    body {
+      font-family: 'Barlow', -apple-system, sans-serif;
+      background: var(--white);
+      color: var(--dark);
+      line-height: 1.5;
+    }
+
+    /* NAV */
+    nav {
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      z-index: 10;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 28px 48px;
+    }
+    .nav-logo {
+      font-size: 16px;
+      font-weight: 800;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: white;
+    }
+    .nav-logo span { color: var(--orange); }
+    .nav-links { display: flex; gap: 32px; align-items: center; }
+    .nav-links a {
+      color: rgba(255,255,255,0.7);
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      transition: color 0.15s;
+    }
+    .nav-links a:hover { color: white; }
+    .nav-links .nav-cta {
+      color: white;
+      background: var(--orange);
+      padding: 8px 18px;
+      border-radius: 2px;
+      letter-spacing: 0.04em;
+    }
+
+    /* HERO — SPLIT */
+    .hero {
+      display: grid;
+      grid-template-columns: 55% 45%;
+      min-height: 100vh;
+    }
+    .hero-photo {
+      background: var(--navy);
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top center;
+      opacity: 0.6;
+      mix-blend-mode: luminosity;
+    }
+    .hero-photo-placeholder {
+      width: 100%;
+      height: 100%;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 120px;
+      color: rgba(255,255,255,0.1);
+    }
+    .hero-photo-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to right, transparent 50%, var(--off-white) 100%
+      ), linear-gradient(
+        to bottom, var(--navy) 0%, transparent 15%, transparent 80%, var(--navy) 100%
+      );
+    }
+    .hero-name-tag {
+      position: absolute;
+      bottom: 48px;
+      left: 48px;
+    }
+    .hero-name {
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.5);
+    }
+
+    .hero-content {
+      background: var(--off-white);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 120px 56px 72px;
+    }
+    .hero-role {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--orange);
+      margin-bottom: 20px;
+    }
+    .hero-headline {
+      font-size: clamp(38px, 4vw, 58px);
+      font-weight: 800;
+      line-height: 1.0;
+      letter-spacing: -0.025em;
+      margin-bottom: 24px;
+    }
+    .hero-headline .line2 {
+      color: var(--navy);
+    }
+    .hero-sub {
+      font-size: 16px;
+      color: var(--mid);
+      line-height: 1.7;
+      margin-bottom: 44px;
+      max-width: 380px;
+    }
+    .hero-cta-group { display: flex; flex-direction: column; gap: 12px; }
+    .cta-email {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      background: var(--navy);
+      color: white;
+      padding: 16px 24px;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 14px;
+      letter-spacing: 0.02em;
+      border-radius: 3px;
+      transition: background 0.15s;
+    }
+    .cta-email:hover { background: var(--navy-mid); }
+    .cta-phone-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--mid);
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 600;
+      padding: 8px 0;
+      transition: color 0.15s;
+    }
+    .cta-phone-link:hover { color: var(--dark); }
+
+    .hero-proof {
+      margin-top: 48px;
+      padding-top: 32px;
+      border-top: 1px solid var(--rule);
+      display: flex;
+      gap: 32px;
+    }
+    .proof-item { }
+    .proof-value {
+      font-size: 28px;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      color: var(--navy);
+      line-height: 1;
+    }
+    .proof-label {
+      font-size: 12px;
+      color: var(--mid);
+      margin-top: 4px;
+      font-weight: 500;
+    }
+
+    /* SERVICES — HORIZONTAL CARDS */
+    .services {
+      padding: 0 48px 96px;
+      background: var(--off-white);
+    }
+    .services-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--orange);
+      padding-top: 80px;
+      margin-bottom: 40px;
+    }
+    .services-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+    .svc {
+      background: white;
+      padding: 32px 28px;
+      border-left: 3px solid var(--navy);
+    }
+    .svc-title {
+      font-size: 18px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      margin-bottom: 10px;
+      color: var(--navy);
+    }
+    .svc-body {
+      font-size: 14px;
+      color: var(--mid);
+      line-height: 1.65;
+    }
+
+    /* WHY JAMES */
+    .about {
+      background: var(--navy);
+      color: white;
+      padding: 96px 48px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+    .about-eyebrow {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--orange);
+      margin-bottom: 20px;
+    }
+    .about-headline {
+      font-size: clamp(28px, 3vw, 40px);
+      font-weight: 800;
+      letter-spacing: -0.025em;
+      line-height: 1.1;
+      margin-bottom: 24px;
+    }
+    .about-body {
+      font-size: 16px;
+      color: rgba(255,255,255,0.65);
+      line-height: 1.75;
+      margin-bottom: 32px;
+    }
+    .about-tagline {
+      font-size: 20px;
+      font-style: italic;
+      font-weight: 600;
+      color: rgba(255,255,255,0.9);
+      padding: 20px 0;
+      border-top: 1px solid rgba(255,255,255,0.2);
+      border-bottom: 1px solid rgba(255,255,255,0.2);
+    }
+    .about-points { display: flex; flex-direction: column; gap: 24px; }
+    .about-point {
+      display: flex;
+      gap: 16px;
+    }
+    .about-point-bullet {
+      width: 24px;
+      height: 24px;
+      background: var(--orange);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      color: white;
+      font-weight: 700;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+    .about-point-text strong {
+      display: block;
+      font-size: 16px;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+    .about-point-text p {
+      font-size: 14px;
+      color: rgba(255,255,255,0.55);
+      line-height: 1.6;
+    }
+
+    /* CONTACT STRIP */
+    .contact-strip {
+      background: var(--orange);
+      padding: 64px 48px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 32px;
+    }
+    .contact-strip h2 {
+      font-size: clamp(28px, 3vw, 40px);
+      font-weight: 800;
+      letter-spacing: -0.025em;
+      color: white;
+      line-height: 1.1;
+    }
+    .contact-strip h2 span { color: var(--navy); }
+    .contact-buttons { display: flex; gap: 16px; flex-wrap: wrap; }
+    .contact-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: white;
+      color: var(--navy);
+      padding: 14px 24px;
+      text-decoration: none;
+      font-weight: 800;
+      font-size: 14px;
+      border-radius: 3px;
+      transition: opacity 0.15s;
+    }
+    .contact-btn:hover { opacity: 0.9; }
+
+    footer {
+      background: var(--dark);
+      padding: 24px 48px;
+      display: flex;
+      justify-content: space-between;
+      font-size: 12px;
+      color: rgba(255,255,255,0.3);
+      letter-spacing: 0.04em;
+    }
+
+    @media (max-width: 900px) {
+      nav { padding: 20px 24px; position: relative; background: var(--navy); }
+      .hero { grid-template-columns: 1fr; min-height: auto; }
+      .hero-photo { min-height: 300px; }
+      .hero-photo-overlay { background: linear-gradient(to bottom, var(--navy) 0%, transparent 30%, transparent 80%, var(--navy-mid) 100%); }
+      .hero-content { padding: 48px 24px; }
+      .about { grid-template-columns: 1fr; gap: 48px; padding: 64px 24px; }
+      .services { padding: 0 24px 64px; }
+      .services-row { grid-template-columns: 1fr; }
+      .contact-strip { padding: 48px 24px; flex-direction: column; align-items: flex-start; }
+      footer { padding: 20px 24px; flex-direction: column; gap: 6px; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="nav-logo">Dealz<span>Direct</span></div>
+    <div class="nav-links">
+      <a href="#services">Services</a>
+      <a href="mailto:dealzdirect1@gmail.com" class="nav-cta">Contact</a>
+    </div>
+  </nav>
+
+  <section class="hero">
+    <div class="hero-photo">
+      <img src="../james-green.jpg" alt="James Green" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+      <div class="hero-photo-placeholder" style="display:none">🔍</div>
+      <div class="hero-photo-overlay"></div>
+      <div class="hero-name-tag">
+        <div class="hero-name">James Green</div>
+      </div>
+    </div>
+    <div class="hero-content">
+      <p class="hero-role">Freelance Production Consultant</p>
+      <h1 class="hero-headline">
+        Quality<br>
+        <span class="line2">and value.</span><br>
+        Guaranteed.
+      </h1>
+      <p class="hero-sub">Production consulting without the agency overhead. Direct access to James — the person finding your deals, managing your suppliers, and delivering results.</p>
+      <div class="hero-cta-group">
+        <a href="mailto:dealzdirect1@gmail.com" class="cta-email">✉️ Email James directly</a>
+        <a href="tel:0625478527" class="cta-phone-link">📞 Call: 062 547 8527</a>
+      </div>
+      <div class="hero-proof">
+        <div class="proof-item">
+          <div class="proof-value">Direct</div>
+          <div class="proof-label">No middlemen</div>
+        </div>
+        <div class="proof-item">
+          <div class="proof-value">Fast</div>
+          <div class="proof-label">Quick response</div>
+        </div>
+        <div class="proof-item">
+          <div class="proof-value">Real</div>
+          <div class="proof-label">Supplier network</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="services" id="services">
+    <p class="services-label">Core services</p>
+    <div class="services-row">
+      <div class="svc">
+        <h3 class="svc-title">Sourcing & Procurement</h3>
+        <p class="svc-body">Finding quality suppliers and the right materials at the right price. Negotiated with real knowledge of what things should cost.</p>
+      </div>
+      <div class="svc">
+        <h3 class="svc-title">Production Management</h3>
+        <p class="svc-body">From brief to delivery — keeping projects on track, on spec, and on budget with clear communication all the way through.</p>
+      </div>
+      <div class="svc">
+        <h3 class="svc-title">Cost Optimization</h3>
+        <p class="svc-body">Identifying waste in your supply chain or production process and presenting clear, actionable alternatives.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="about">
+    <div>
+      <p class="about-eyebrow">About James</p>
+      <h2 class="about-headline">The scout who finds the deal.</h2>
+      <p class="about-body">Years of production experience mean James knows the right suppliers, the right questions, and exactly where most businesses are overpaying. He brings that knowledge directly to your project.</p>
+      <p class="about-tagline">"Where you will find quality and value."</p>
+    </div>
+    <div class="about-points">
+      <div class="about-point">
+        <div class="about-point-bullet">✓</div>
+        <div class="about-point-text">
+          <strong>You work with James, not an account manager</strong>
+          <p>Direct access means faster decisions and no message distortion.</p>
+        </div>
+      </div>
+      <div class="about-point">
+        <div class="about-point-bullet">✓</div>
+        <div class="about-point-text">
+          <strong>Freelance = lower cost, same expertise</strong>
+          <p>No agency overhead passed to your invoice. Just the work.</p>
+        </div>
+      </div>
+      <div class="about-point">
+        <div class="about-point-bullet">✓</div>
+        <div class="about-point-text">
+          <strong>Supplier relationships built over years</strong>
+          <p>Trust already established — you benefit from day one.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="contact-strip">
+    <h2>Ready to find a<br><span>better deal?</span></h2>
+    <div class="contact-buttons">
+      <a href="mailto:dealzdirect1@gmail.com" class="contact-btn">✉️ dealzdirect1@gmail.com</a>
+      <a href="tel:0625478527" class="contact-btn">📞 062 547 8527</a>
+    </div>
+  </section>
+
+  <footer>
+    <span>© 2025 James Green / DealZ Direct</span>
+    <span>Freelance Production Consultant</span>
+  </footer>
+
+</body>
+</html>

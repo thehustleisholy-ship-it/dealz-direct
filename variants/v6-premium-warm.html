@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>James Green — DealZ Direct</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;1,9..144,300;1,9..144,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --ivory: #f7f4ee;
+      --warm-white: #faf9f6;
+      --charcoal: #1c1c1a;
+      --charcoal-2: #2a2a26;
+      --rule: #dedad0;
+      --mid: #7a7870;
+      --forest: #1e4035;
+      --sage: #4a7c65;
+      --sage-light: #eef5f1;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--warm-white);
+      color: var(--charcoal);
+      line-height: 1.6;
+    }
+
+    /* NAV */
+    nav {
+      padding: 32px 64px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid var(--rule);
+    }
+    .nav-left {
+      display: flex;
+      flex-direction: column;
+    }
+    .nav-name {
+      font-family: 'Fraunces', serif;
+      font-size: 20px;
+      font-weight: 500;
+      letter-spacing: 0.01em;
+    }
+    .nav-title {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--sage);
+      margin-top: 2px;
+    }
+    nav a.nav-link {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--mid);
+      text-decoration: none;
+      letter-spacing: 0.04em;
+      padding: 10px 20px;
+      border: 1px solid var(--rule);
+      border-radius: 24px;
+      transition: border-color 0.2s, color 0.2s;
+    }
+    nav a.nav-link:hover { border-color: var(--charcoal); color: var(--charcoal); }
+
+    /* HERO */
+    .hero {
+      padding: 80px 64px;
+      display: grid;
+      grid-template-columns: 1fr 400px;
+      gap: 80px;
+      align-items: start;
+      max-width: 1280px;
+      margin: 0 auto;
+    }
+    .hero-text {
+      padding-top: 24px;
+    }
+    .hero-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--sage);
+      margin-bottom: 28px;
+    }
+    .hero-tag::before {
+      content: '';
+      display: block;
+      width: 20px;
+      height: 1px;
+      background: currentColor;
+    }
+    .hero-headline {
+      font-family: 'Fraunces', serif;
+      font-size: clamp(44px, 5vw, 72px);
+      font-weight: 400;
+      line-height: 1.08;
+      letter-spacing: -0.015em;
+      margin-bottom: 28px;
+    }
+    .hero-headline em {
+      font-style: italic;
+      font-weight: 300;
+      color: var(--sage);
+    }
+    .hero-sub {
+      font-size: 17px;
+      font-weight: 400;
+      color: var(--mid);
+      line-height: 1.75;
+      margin-bottom: 44px;
+      max-width: 500px;
+    }
+    .hero-actions {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      align-items: flex-start;
+    }
+    .cta-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--forest);
+      color: white;
+      padding: 16px 28px;
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 600;
+      border-radius: 4px;
+      letter-spacing: 0.02em;
+      transition: background 0.2s;
+    }
+    .cta-primary:hover { background: #163028; }
+    .cta-phone {
+      font-size: 14px;
+      color: var(--mid);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: color 0.2s;
+    }
+    .cta-phone:hover { color: var(--charcoal); }
+
+    .hero-photo-wrap {
+      position: sticky;
+      top: 24px;
+    }
+    .hero-photo-frame {
+      position: relative;
+      background: var(--ivory);
+      overflow: hidden;
+      border-radius: 4px;
+    }
+    .hero-photo-frame img {
+      width: 100%;
+      aspect-ratio: 4/5;
+      object-fit: cover;
+      object-position: top center;
+      display: block;
+      filter: sepia(8%) contrast(1.05);
+    }
+    .hero-photo-placeholder {
+      width: 100%;
+      aspect-ratio: 4/5;
+      background: var(--ivory);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 80px;
+    }
+    .hero-photo-tag {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: var(--forest);
+      color: white;
+      padding: 14px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .photo-tag-name {
+      font-family: 'Fraunces', serif;
+      font-size: 16px;
+      font-weight: 400;
+    }
+    .photo-tag-badge {
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.6);
+    }
+
+    /* TAGLINE BLOCK */
+    .tagline-block {
+      background: var(--forest);
+      color: white;
+      padding: 56px 64px;
+      text-align: center;
+    }
+    .tagline-text {
+      font-family: 'Fraunces', serif;
+      font-size: clamp(24px, 3vw, 40px);
+      font-weight: 300;
+      font-style: italic;
+      line-height: 1.4;
+      color: rgba(255,255,255,0.9);
+      max-width: 700px;
+      margin: 0 auto;
+    }
+    .tagline-text strong {
+      font-style: normal;
+      font-weight: 500;
+      color: white;
+    }
+
+    /* SERVICES */
+    .services {
+      padding: 96px 64px;
+      max-width: 1280px;
+      margin: 0 auto;
+    }
+    .services-top {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: end;
+      margin-bottom: 56px;
+      padding-bottom: 40px;
+      border-bottom: 1px solid var(--rule);
+    }
+    .services-label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--sage);
+      margin-bottom: 16px;
+    }
+    .services-title {
+      font-family: 'Fraunces', serif;
+      font-size: clamp(30px, 3.5vw, 46px);
+      font-weight: 400;
+      line-height: 1.15;
+      letter-spacing: -0.01em;
+    }
+    .services-desc {
+      font-size: 15px;
+      color: var(--mid);
+      line-height: 1.75;
+    }
+    .services-list { display: flex; flex-direction: column; }
+    .service-item {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 32px;
+      padding: 32px 0;
+      border-bottom: 1px solid var(--rule);
+      align-items: start;
+      cursor: default;
+      transition: background 0.15s;
+    }
+    .service-item:first-child { border-top: 1px solid var(--rule); }
+    .service-header {
+      display: flex;
+      align-items: baseline;
+      gap: 16px;
+      margin-bottom: 8px;
+    }
+    .service-index {
+      font-size: 12px;
+      color: var(--sage);
+      font-weight: 500;
+      min-width: 24px;
+    }
+    .service-name {
+      font-family: 'Fraunces', serif;
+      font-size: 22px;
+      font-weight: 400;
+      letter-spacing: -0.01em;
+    }
+    .service-desc-text {
+      font-size: 14px;
+      color: var(--mid);
+      line-height: 1.7;
+      padding-left: 40px;
+      max-width: 560px;
+    }
+    .service-arrow {
+      font-size: 20px;
+      color: var(--rule);
+      padding-top: 4px;
+      transition: color 0.15s;
+    }
+    .service-item:hover .service-arrow { color: var(--sage); }
+
+    /* ABOUT */
+    .about {
+      background: var(--ivory);
+      padding: 96px 64px;
+    }
+    .about-inner {
+      max-width: 1280px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+    .about-label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--sage);
+      margin-bottom: 16px;
+    }
+    .about-headline {
+      font-family: 'Fraunces', serif;
+      font-size: clamp(28px, 3vw, 42px);
+      font-weight: 400;
+      line-height: 1.2;
+      letter-spacing: -0.01em;
+      margin-bottom: 24px;
+    }
+    .about-body {
+      font-size: 16px;
+      color: var(--mid);
+      line-height: 1.8;
+    }
+    .about-values {
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+    }
+    .value {
+      padding: 28px;
+      background: white;
+      border-radius: 4px;
+      border-left: 3px solid var(--sage);
+    }
+    .value-name {
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+    .value-body {
+      font-size: 13px;
+      color: var(--mid);
+      line-height: 1.65;
+    }
+
+    /* CONTACT */
+    .contact {
+      padding: 96px 64px;
+      max-width: 800px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    .contact-label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--sage);
+      margin-bottom: 16px;
+    }
+    .contact-headline {
+      font-family: 'Fraunces', serif;
+      font-size: clamp(32px, 4vw, 52px);
+      font-weight: 400;
+      letter-spacing: -0.01em;
+      margin-bottom: 20px;
+    }
+    .contact-sub {
+      font-size: 16px;
+      color: var(--mid);
+      line-height: 1.7;
+      margin-bottom: 48px;
+    }
+    .contact-options {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+      max-width: 520px;
+      margin: 0 auto;
+    }
+    .contact-option {
+      display: block;
+      background: var(--forest);
+      color: white;
+      padding: 24px;
+      text-decoration: none;
+      border-radius: 4px;
+      text-align: left;
+      transition: background 0.2s;
+    }
+    .contact-option:hover { background: #163028; }
+    .contact-option-label {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.5);
+      margin-bottom: 6px;
+    }
+    .contact-option-value {
+      font-size: 14px;
+      font-weight: 500;
+    }
+
+    footer {
+      border-top: 1px solid var(--rule);
+      padding: 28px 64px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 12px;
+      color: var(--mid);
+      letter-spacing: 0.04em;
+    }
+    footer .footer-name {
+      font-family: 'Fraunces', serif;
+      font-size: 14px;
+      color: var(--charcoal);
+    }
+
+    @media (max-width: 900px) {
+      nav { padding: 24px; }
+      .hero { grid-template-columns: 1fr; padding: 48px 24px; gap: 48px; }
+      .hero-photo-wrap { position: static; max-width: 280px; }
+      .tagline-block { padding: 48px 24px; }
+      .services { padding: 64px 24px; }
+      .services-top { grid-template-columns: 1fr; gap: 20px; }
+      .about { padding: 64px 24px; }
+      .about-inner { grid-template-columns: 1fr; gap: 40px; }
+      .contact { padding: 64px 24px; }
+      .contact-options { grid-template-columns: 1fr; }
+      footer { padding: 20px 24px; flex-direction: column; gap: 6px; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="nav-left">
+      <span class="nav-name">James Green</span>
+      <span class="nav-title">DealZ Direct</span>
+    </div>
+    <a href="mailto:dealzdirect1@gmail.com" class="nav-link">Get in touch</a>
+  </nav>
+
+  <section class="hero">
+    <div class="hero-text">
+      <p class="hero-tag">Freelance Production Consultant</p>
+      <h1 class="hero-headline">
+        Quality.<br>
+        Value.<br>
+        <em>Delivered direct.</em>
+      </h1>
+      <p class="hero-sub">James Green brings hands-on production consulting to businesses that need real results — sourcing, project delivery, and cost-saving expertise without the agency overhead.</p>
+      <div class="hero-actions">
+        <a href="mailto:dealzdirect1@gmail.com" class="cta-primary">✉️ Start the conversation</a>
+        <a href="tel:0625478527" class="cta-phone">📞 062 547 8527</a>
+      </div>
+    </div>
+    <div class="hero-photo-wrap">
+      <div class="hero-photo-frame">
+        <img src="../james-green.jpg" alt="James Green" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+        <div class="hero-photo-placeholder" style="display:none">🔍</div>
+        <div class="hero-photo-tag">
+          <span class="photo-tag-name">James Green</span>
+          <span class="photo-tag-badge">DealZ Direct</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="tagline-block">
+    <p class="tagline-text">
+      "Where you will find <strong>quality and value</strong> — without the overhead, without the layers, without the run-around."
+    </p>
+  </div>
+
+  <section class="services">
+    <div class="services-top">
+      <div>
+        <p class="services-label">What I do</p>
+        <h2 class="services-title">The right production,<br>at the right price.</h2>
+      </div>
+      <p class="services-desc">Every service is delivered personally by James. You benefit from real experience, real supplier relationships, and honest advice — not junior staff and account manager chains.</p>
+    </div>
+    <div class="services-list">
+      <div class="service-item">
+        <div>
+          <div class="service-header">
+            <span class="service-index">01</span>
+            <span class="service-name">Sourcing & Procurement</span>
+          </div>
+          <p class="service-desc-text">Finding quality suppliers, negotiating terms, and making sure what arrives matches what was promised — at a price worth paying.</p>
+        </div>
+        <span class="service-arrow">→</span>
+      </div>
+      <div class="service-item">
+        <div>
+          <div class="service-header">
+            <span class="service-index">02</span>
+            <span class="service-name">Production Management</span>
+          </div>
+          <p class="service-desc-text">End-to-end project management from initial brief to final delivery. Clear timelines, proactive communication, and accountability throughout.</p>
+        </div>
+        <span class="service-arrow">→</span>
+      </div>
+      <div class="service-item">
+        <div>
+          <div class="service-header">
+            <span class="service-index">03</span>
+            <span class="service-name">Cost & Value Review</span>
+          </div>
+          <p class="service-desc-text">A clear look at where your production spend is going — and specific, actionable recommendations for getting more value from it.</p>
+        </div>
+        <span class="service-arrow">→</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="about">
+    <div class="about-inner">
+      <div>
+        <p class="about-label">About James</p>
+        <h2 class="about-headline">An experienced operator, working directly for you.</h2>
+        <p class="about-body">James Green has spent years building supplier networks, managing production projects, and finding the deals that others miss. As a freelance consultant, he brings all of that directly to your business — without agency rates or bureaucratic layers.</p>
+      </div>
+      <div class="about-values">
+        <div class="value">
+          <div class="value-name">Direct. Always.</div>
+          <p class="value-body">You speak to James. Not a coordinator, not an account manager. The person doing the work is the person you call.</p>
+        </div>
+        <div class="value">
+          <div class="value-name">Real supplier relationships.</div>
+          <p class="value-body">Built over years of industry work. You benefit from trust and negotiating leverage that would take you years to build yourself.</p>
+        </div>
+        <div class="value">
+          <div class="value-name">Honest about cost.</div>
+          <p class="value-body">Freelance means you pay for expertise, not overhead. James is straightforward about what things cost and why.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="contact">
+    <p class="contact-label">Let's talk</p>
+    <h2 class="contact-headline">Tell me what you need.</h2>
+    <p class="contact-sub">James responds quickly and keeps it simple. Whether you have a clear brief or a vague challenge — reach out. Good conversations start somewhere.</p>
+    <div class="contact-options">
+      <a href="mailto:dealzdirect1@gmail.com" class="contact-option">
+        <div class="contact-option-label">Email</div>
+        <div class="contact-option-value">dealzdirect1@gmail.com</div>
+      </a>
+      <a href="tel:0625478527" class="contact-option">
+        <div class="contact-option-label">Phone</div>
+        <div class="contact-option-value">062 547 8527</div>
+      </a>
+    </div>
+  </section>
+
+  <footer>
+    <span class="footer-name">James Green</span>
+    <span>DealZ Direct — Freelance Production Consultant</span>
+    <span>© 2025</span>
+  </footer>
+
+</body>
+</html>

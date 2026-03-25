@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>James Green — Production Consultant</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy: #0d1b2e;
+      --navy-2: #162035;
+      --gold: #b8943f;
+      --gold-light: #d4af68;
+      --gold-pale: #f5edd8;
+      --cream: #faf8f3;
+      --white: #ffffff;
+      --rule: #dcd8cc;
+      --text: #1a1a1a;
+      --muted: #6a6560;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--cream);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    /* HEADER */
+    header {
+      background: var(--navy);
+      padding: 0 64px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 72px;
+    }
+    .brand {
+      display: flex;
+      align-items: baseline;
+      gap: 14px;
+    }
+    .brand-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 24px;
+      font-weight: 500;
+      color: white;
+      letter-spacing: 0.02em;
+    }
+    .brand-sep {
+      width: 1px;
+      height: 16px;
+      background: rgba(255,255,255,0.2);
+    }
+    .brand-sub {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--gold-light);
+    }
+    header a {
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.6);
+      text-decoration: none;
+      padding-bottom: 2px;
+      border-bottom: 1px solid transparent;
+      transition: color 0.2s, border-color 0.2s;
+    }
+    header a:hover { color: var(--gold-light); border-color: var(--gold-light); }
+
+    /* HERO */
+    .hero {
+      display: grid;
+      grid-template-columns: 1fr 480px;
+      min-height: 82vh;
+    }
+    .hero-content {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 80px 80px 80px 64px;
+      border-right: 1px solid var(--rule);
+    }
+    .hero-ornament {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 36px;
+    }
+    .ornament-line { width: 40px; height: 1px; background: var(--gold); }
+    .ornament-text {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+    .hero-headline {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(48px, 5.5vw, 76px);
+      font-weight: 500;
+      line-height: 1.08;
+      letter-spacing: -0.01em;
+      margin-bottom: 28px;
+    }
+    .hero-headline em {
+      font-style: italic;
+      color: var(--gold);
+    }
+    .hero-sub {
+      font-size: 16px;
+      font-weight: 300;
+      color: var(--muted);
+      line-height: 1.8;
+      margin-bottom: 44px;
+      max-width: 440px;
+    }
+    .hero-ctas {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      align-items: flex-start;
+    }
+    .cta-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      background: var(--navy);
+      color: white;
+      padding: 16px 32px;
+      text-decoration: none;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      transition: background 0.2s;
+    }
+    .cta-primary:hover { background: var(--navy-2); }
+    .cta-primary .arrow { color: var(--gold-light); }
+    .cta-alt {
+      font-size: 13px;
+      color: var(--muted);
+      text-decoration: none;
+      letter-spacing: 0.04em;
+      padding-bottom: 2px;
+      border-bottom: 1px solid var(--rule);
+      transition: color 0.2s, border-color 0.2s;
+    }
+    .cta-alt:hover { color: var(--text); border-color: var(--text); }
+
+    .hero-photo {
+      position: relative;
+      background: var(--navy);
+      overflow: hidden;
+    }
+    .hero-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top center;
+      filter: grayscale(25%) contrast(1.05);
+      opacity: 0.75;
+    }
+    .hero-photo-placeholder {
+      width: 100%;
+      height: 100%;
+      min-height: 500px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 96px;
+      color: rgba(255,255,255,0.08);
+    }
+    .hero-photo-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to bottom, transparent 60%, var(--navy) 100%
+      );
+    }
+    .hero-photo-caption {
+      position: absolute;
+      bottom: 32px;
+      left: 32px;
+      right: 32px;
+    }
+    .photo-caption-rule { width: 24px; height: 1px; background: var(--gold); margin-bottom: 10px; }
+    .photo-caption-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 20px;
+      font-weight: 500;
+      color: white;
+      letter-spacing: 0.04em;
+    }
+    .photo-caption-title {
+      font-size: 10px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--gold-light);
+      margin-top: 4px;
+    }
+
+    /* PRINCIPLES */
+    .principles {
+      background: var(--navy);
+      color: white;
+      padding: 72px 64px;
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      gap: 64px;
+      align-items: start;
+    }
+    .principles-intro {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 28px;
+      font-weight: 500;
+      font-style: italic;
+      color: rgba(255,255,255,0.8);
+      line-height: 1.45;
+      padding-top: 4px;
+    }
+    .principles-intro em { color: var(--gold-light); font-style: normal; }
+    .principles-list {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 32px;
+    }
+    .principle {
+      border-top: 1px solid rgba(184,148,63,0.4);
+      padding-top: 20px;
+    }
+    .principle-icon { font-size: 20px; margin-bottom: 14px; }
+    .principle-name {
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      margin-bottom: 8px;
+      color: var(--gold-light);
+    }
+    .principle-desc {
+      font-size: 13px;
+      color: rgba(255,255,255,0.5);
+      line-height: 1.65;
+    }
+
+    /* SERVICES */
+    .services {
+      padding: 96px 64px;
+    }
+    .section-header {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: end;
+      margin-bottom: 60px;
+      padding-bottom: 40px;
+      border-bottom: 1px solid var(--rule);
+    }
+    .section-ornament {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 20px;
+    }
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(32px, 3.5vw, 48px);
+      font-weight: 500;
+      letter-spacing: -0.01em;
+      line-height: 1.15;
+    }
+    .section-body {
+      font-size: 15px;
+      color: var(--muted);
+      line-height: 1.75;
+    }
+    .services-cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+    .service-card {
+      padding: 40px 32px;
+      border: 1px solid var(--rule);
+      background: white;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .service-card:hover {
+      border-color: var(--gold);
+      transform: translateY(-2px);
+    }
+    .service-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 40px;
+      font-weight: 400;
+      color: var(--gold);
+      line-height: 1;
+      margin-bottom: 20px;
+    }
+    .service-name {
+      font-size: 17px;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      margin-bottom: 12px;
+    }
+    .service-body {
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    /* CONTACT */
+    .contact {
+      background: var(--gold-pale);
+      padding: 96px 64px;
+    }
+    .contact-inner {
+      max-width: 800px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    .contact .section-ornament { justify-content: center; }
+    .contact .section-title {
+      margin: 0 auto 20px;
+    }
+    .contact-sub {
+      font-size: 16px;
+      color: var(--muted);
+      line-height: 1.7;
+      margin-bottom: 52px;
+    }
+    .contact-cards {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+      max-width: 560px;
+      margin: 0 auto;
+    }
+    .contact-card {
+      background: var(--navy);
+      padding: 28px 24px;
+      text-decoration: none;
+      color: white;
+      text-align: left;
+      transition: background 0.2s;
+    }
+    .contact-card:hover { background: var(--navy-2); }
+    .contact-card-label {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--gold-light);
+      margin-bottom: 8px;
+    }
+    .contact-card-value {
+      font-size: 15px;
+      font-weight: 500;
+    }
+
+    footer {
+      background: var(--navy);
+      padding: 28px 64px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.3);
+    }
+    footer .footer-gold { color: var(--gold); }
+
+    @media (max-width: 900px) {
+      header { padding: 0 24px; }
+      .hero { grid-template-columns: 1fr; }
+      .hero-content { padding: 56px 24px; border-right: none; }
+      .hero-photo { min-height: 360px; }
+      .principles { grid-template-columns: 1fr; padding: 56px 24px; gap: 40px; }
+      .principles-list { grid-template-columns: 1fr 1fr; }
+      .services { padding: 64px 24px; }
+      .section-header { grid-template-columns: 1fr; gap: 20px; }
+      .services-cards { grid-template-columns: 1fr; }
+      .contact { padding: 64px 24px; }
+      .contact-cards { grid-template-columns: 1fr; }
+      footer { padding: 20px 24px; flex-direction: column; gap: 6px; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="brand">
+      <div class="brand-name">James Green</div>
+      <div class="brand-sep"></div>
+      <div class="brand-sub">DealZ Direct</div>
+    </div>
+    <a href="mailto:dealzdirect1@gmail.com">Enquire</a>
+  </header>
+
+  <section class="hero">
+    <div class="hero-content">
+      <div class="hero-ornament">
+        <div class="ornament-line"></div>
+        <span class="ornament-text">Freelance Production Consultant</span>
+      </div>
+      <h1 class="hero-headline">
+        Where you will find<br>
+        <em>quality</em> and value.
+      </h1>
+      <p class="hero-sub">James Green offers senior production consulting — sourcing, supplier management, and project delivery — with the access and efficiency that only a direct, experienced operator can provide.</p>
+      <div class="hero-ctas">
+        <a href="mailto:dealzdirect1@gmail.com" class="cta-primary">
+          Request a consultation <span class="arrow">→</span>
+        </a>
+        <a href="tel:0625478527" class="cta-alt">062 547 8527</a>
+      </div>
+    </div>
+    <div class="hero-photo">
+      <img src="../james-green.jpg" alt="James Green" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+      <div class="hero-photo-placeholder" style="display:none">🔍</div>
+      <div class="hero-photo-overlay"></div>
+      <div class="hero-photo-caption">
+        <div class="photo-caption-rule"></div>
+        <div class="photo-caption-name">James Green</div>
+        <div class="photo-caption-title">Production Consultant</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="principles">
+    <p class="principles-intro">
+      Production consulting as it should be — <em>direct, experienced, and built around value.</em>
+    </p>
+    <div class="principles-list">
+      <div class="principle">
+        <div class="principle-icon">🎯</div>
+        <div class="principle-name">Direct access</div>
+        <p class="principle-desc">You work with James. No account managers, no layers, no delays.</p>
+      </div>
+      <div class="principle">
+        <div class="principle-icon">🔍</div>
+        <div class="principle-name">Sharp sourcing</div>
+        <p class="principle-desc">Years of supplier relationships mean better options at better prices.</p>
+      </div>
+      <div class="principle">
+        <div class="principle-icon">✦</div>
+        <div class="principle-name">Genuine value</div>
+        <p class="principle-desc">Freelance rates without compromise on expertise or delivery quality.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="services">
+    <div class="section-header">
+      <div>
+        <div class="section-ornament">
+          <div class="ornament-line"></div>
+          <span class="ornament-text">Services</span>
+        </div>
+        <h2 class="section-title">Production expertise,<br>applied directly.</h2>
+      </div>
+      <p class="section-body">Every engagement is handled personally by James — drawing on real industry experience to deliver better sourcing, smoother production, and lower costs.</p>
+    </div>
+    <div class="services-cards">
+      <div class="service-card">
+        <div class="service-num">I</div>
+        <h3 class="service-name">Sourcing & Procurement</h3>
+        <p class="service-body">Identifying, evaluating, and securing quality suppliers. Real relationships translate to better terms and reliable supply.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-num">II</div>
+        <h3 class="service-name">Production Management</h3>
+        <p class="service-body">End-to-end oversight of production projects — from initial brief through quality assurance and final delivery.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-num">III</div>
+        <h3 class="service-name">Cost & Value Review</h3>
+        <p class="service-body">A clear-eyed assessment of where you're spending too much, and structured recommendations for what to do about it.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="contact">
+    <div class="contact-inner">
+      <div class="section-ornament">
+        <div class="ornament-line"></div>
+        <span class="ornament-text">Get in touch</span>
+        <div class="ornament-line"></div>
+      </div>
+      <h2 class="section-title">Let's discuss your project.</h2>
+      <p class="contact-sub">Whether your need is defined or still forming — reach out to James directly. He responds promptly and without ceremony.</p>
+      <div class="contact-cards">
+        <a href="mailto:dealzdirect1@gmail.com" class="contact-card">
+          <div class="contact-card-label">Email</div>
+          <div class="contact-card-value">dealzdirect1@gmail.com</div>
+        </a>
+        <a href="tel:0625478527" class="contact-card">
+          <div class="contact-card-label">Phone</div>
+          <div class="contact-card-value">062 547 8527</div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <span>© 2025 James Green</span>
+    <span class="footer-gold">DealZ Direct</span>
+    <span>Freelance Production Consultant</span>
+  </footer>
+
+</body>
+</html>

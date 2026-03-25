@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="James Green — Freelance Production Consultant. Sourcing, procurement, and production management. Quality and value, direct.">
+  <title>DealZ Direct — James Green, Production Consultant</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --ink:        #0c0c0a;
+      --ink-2:      #141410;
+      --ink-3:      #1c1c18;
+      --paper:      #f5f4ef;
+      --paper-2:    #edeae2;
+      --amber:      #d49018;
+      --amber-hi:   #e8a828;
+      --amber-pale: #fef5dc;
+      --white:      #f8f6f0;
+      --rule-dark:  rgba(255,255,255,0.08);
+      --rule-light: #dedad2;
+      --muted-dark: rgba(255,255,255,0.5);
+      --muted-light:#6a6860;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Space Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--ink);
+      color: var(--white);
+      line-height: 1.55;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ─── HEADER ───────────────────────────────────────────── */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 200;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 56px;
+      height: 68px;
+      border-bottom: 1px solid var(--rule-dark);
+      background: rgba(12,12,10,0.92);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
+    .logo {
+      display: flex;
+      align-items: baseline;
+      gap: 10px;
+      text-decoration: none;
+    }
+    .logo-mark {
+      font-size: 17px;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: var(--white);
+    }
+    .logo-mark .accent { color: var(--amber-hi); }
+    .logo-divider { color: rgba(255,255,255,0.2); font-size: 14px; }
+    .logo-name {
+      font-size: 13px;
+      font-weight: 400;
+      color: var(--muted-dark);
+      letter-spacing: 0.02em;
+    }
+    .header-right {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+    .header-phone {
+      font-size: 13px;
+      color: var(--muted-dark);
+      text-decoration: none;
+      font-weight: 500;
+      letter-spacing: 0.02em;
+      transition: color 0.2s;
+    }
+    .header-phone:hover { color: var(--white); }
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--amber);
+      color: var(--ink);
+      padding: 10px 22px;
+      border-radius: 3px;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 13px;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      transition: background 0.15s;
+    }
+    .btn-primary:hover { background: var(--amber-hi); }
+
+    /* ─── HERO ─────────────────────────────────────────────── */
+    .hero {
+      display: grid;
+      grid-template-columns: 1fr 460px;
+      min-height: calc(100vh - 68px);
+      border-bottom: 1px solid var(--rule-dark);
+    }
+    .hero-content {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 80px 64px 80px 56px;
+      border-right: 1px solid var(--rule-dark);
+    }
+    .hero-eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 32px;
+    }
+    .eyebrow-line { width: 28px; height: 1.5px; background: var(--amber); flex-shrink: 0; }
+    .eyebrow-text {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--amber-hi);
+    }
+    .hero-h1 {
+      font-size: clamp(52px, 5.5vw, 80px);
+      font-weight: 700;
+      line-height: 0.96;
+      letter-spacing: -0.035em;
+      margin-bottom: 32px;
+    }
+    .hero-h1 .line-amber { color: var(--amber-hi); display: block; }
+    .hero-h1 .line-white { color: var(--white); display: block; }
+    .hero-body {
+      font-size: 17px;
+      font-weight: 400;
+      color: var(--muted-dark);
+      line-height: 1.75;
+      margin-bottom: 48px;
+      max-width: 460px;
+    }
+    .hero-body strong { color: var(--white); font-weight: 600; }
+    .hero-actions {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .cta-row {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: transparent;
+      color: rgba(255,255,255,0.7);
+      padding: 10px 20px;
+      border-radius: 3px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 13px;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+      border: 1.5px solid rgba(255,255,255,0.12);
+      transition: border-color 0.15s, color 0.15s;
+    }
+    .btn-secondary:hover { border-color: rgba(255,255,255,0.3); color: var(--white); }
+    .cta-note {
+      font-size: 12px;
+      color: rgba(255,255,255,0.28);
+      letter-spacing: 0.04em;
+    }
+
+    /* HERO PHOTO */
+    .hero-photo {
+      position: relative;
+      overflow: hidden;
+      background: var(--ink-2);
+    }
+    .hero-photo img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top center;
+      filter: grayscale(20%) contrast(1.05) brightness(0.8);
+    }
+    .hero-photo-placeholder {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 100px;
+      color: rgba(255,255,255,0.04);
+    }
+    .photo-vignette {
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(to right, var(--ink) 0%, transparent 20%),
+        linear-gradient(to top, var(--ink) 0%, transparent 35%);
+      pointer-events: none;
+    }
+    .photo-id {
+      position: absolute;
+      bottom: 28px;
+      left: 28px;
+    }
+    .photo-id-name {
+      font-size: 15px;
+      font-weight: 700;
+      letter-spacing: 0.03em;
+      color: var(--white);
+    }
+    .photo-id-role {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--amber-hi);
+      margin-top: 4px;
+    }
+
+    /* ─── TRUST BAR ────────────────────────────────────────── */
+    .trust-bar {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      border-bottom: 1px solid var(--rule-dark);
+    }
+    .trust-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 20px 28px;
+      border-right: 1px solid var(--rule-dark);
+      font-size: 13px;
+      color: var(--muted-dark);
+      font-weight: 500;
+    }
+    .trust-item:last-child { border-right: none; }
+    .trust-check { color: var(--amber-hi); font-size: 13px; font-weight: 700; flex-shrink: 0; }
+
+    /* ─── SERVICES ─────────────────────────────────────────── */
+    .services {
+      background: var(--paper);
+      color: var(--ink);
+      padding: 96px 56px;
+    }
+    .section-eyebrow {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--amber);
+      margin-bottom: 16px;
+    }
+    .section-title {
+      font-size: clamp(28px, 3vw, 42px);
+      font-weight: 700;
+      letter-spacing: -0.025em;
+      line-height: 1.1;
+    }
+    .services-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 48px;
+      margin-bottom: 56px;
+    }
+    .services-header .section-title { max-width: 380px; }
+    .services-header-right {
+      font-size: 15px;
+      color: var(--muted-light);
+      line-height: 1.7;
+      max-width: 400px;
+    }
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+    .svc {
+      background: var(--white);
+      padding: 40px 32px;
+      border-top: 3px solid transparent;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .svc:hover {
+      border-color: var(--amber);
+      box-shadow: 0 4px 24px rgba(0,0,0,0.06);
+    }
+    .svc-num {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--amber);
+      margin-bottom: 18px;
+    }
+    .svc-title {
+      font-size: 20px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+      margin-bottom: 12px;
+    }
+    .svc-body {
+      font-size: 14px;
+      color: var(--muted-light);
+      line-height: 1.7;
+      margin-bottom: 20px;
+    }
+    .svc-tag {
+      font-size: 12px;
+      color: var(--amber);
+      font-weight: 600;
+      letter-spacing: 0.04em;
+    }
+
+    /* ─── HOW IT WORKS ─────────────────────────────────────── */
+    .how {
+      padding: 96px 56px;
+    }
+    .how-grid {
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      gap: 80px;
+      align-items: start;
+    }
+    .how-intro .section-title {
+      font-size: clamp(24px, 2.5vw, 34px);
+      margin-bottom: 16px;
+    }
+    .how-intro p {
+      font-size: 14px;
+      color: var(--muted-dark);
+      line-height: 1.7;
+    }
+    .steps { display: flex; flex-direction: column; }
+    .step {
+      display: grid;
+      grid-template-columns: 64px 1fr;
+      gap: 28px;
+      padding: 28px 0;
+      border-bottom: 1px solid var(--rule-dark);
+      align-items: start;
+    }
+    .step:first-child { border-top: 1px solid var(--rule-dark); }
+    .step-num {
+      font-size: 40px;
+      font-weight: 700;
+      letter-spacing: -0.04em;
+      color: rgba(255,255,255,0.1);
+      line-height: 1;
+      padding-top: 2px;
+    }
+    .step-title {
+      font-size: 18px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 7px;
+    }
+    .step-body {
+      font-size: 14px;
+      color: var(--muted-dark);
+      line-height: 1.7;
+    }
+
+    /* ─── OBJECTIONS ────────────────────────────────────────── */
+    .objections {
+      background: var(--paper-2);
+      color: var(--ink);
+      padding: 96px 56px;
+    }
+    .objections-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: start;
+    }
+    .objections-left .section-title { margin-bottom: 16px; }
+    .objections-left p {
+      font-size: 15px;
+      color: var(--muted-light);
+      line-height: 1.7;
+    }
+    .qa-list { display: flex; flex-direction: column; gap: 16px; }
+    .qa {
+      background: var(--white);
+      padding: 28px;
+      border-left: 3px solid var(--amber);
+    }
+    .qa-q {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--ink);
+      margin-bottom: 10px;
+      letter-spacing: -0.01em;
+    }
+    .qa-a {
+      font-size: 14px;
+      color: var(--muted-light);
+      line-height: 1.7;
+    }
+
+    /* ─── FINAL CTA ─────────────────────────────────────────── */
+    .cta-section {
+      padding: 96px 56px;
+      text-align: center;
+    }
+    .cta-section .section-eyebrow { margin-bottom: 24px; }
+    .cta-h2 {
+      font-size: clamp(36px, 4.5vw, 60px);
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      line-height: 1.0;
+      margin-bottom: 18px;
+    }
+    .cta-h2 .amber { color: var(--amber-hi); }
+    .cta-sub {
+      font-size: 17px;
+      color: var(--muted-dark);
+      margin-bottom: 48px;
+      line-height: 1.65;
+    }
+    .cta-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+    .cta-buttons .btn-primary { font-size: 15px; padding: 15px 32px; }
+    .cta-buttons .btn-secondary { font-size: 15px; padding: 14px 28px; }
+    .cta-note-bottom {
+      margin-top: 20px;
+      font-size: 12px;
+      color: rgba(255,255,255,0.25);
+      letter-spacing: 0.04em;
+    }
+
+    /* ─── FOOTER ────────────────────────────────────────────── */
+    footer {
+      border-top: 1px solid var(--rule-dark);
+      padding: 24px 56px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .footer-brand { font-size: 13px; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; }
+    .footer-brand .accent { color: var(--amber-hi); }
+    footer p { font-size: 12px; color: rgba(255,255,255,0.2); letter-spacing: 0.04em; }
+
+    /* ─── RESPONSIVE ────────────────────────────────────────── */
+    @media (max-width: 1024px) {
+      .hero { grid-template-columns: 1fr 380px; }
+      .hero-content { padding: 72px 48px 72px 40px; }
+    }
+
+    @media (max-width: 860px) {
+      header { padding: 0 24px; height: 60px; }
+      .header-phone { display: none; }
+      .logo-name { display: none; }
+
+      .hero { grid-template-columns: 1fr; min-height: auto; }
+      .hero-content { padding: 56px 24px; border-right: none; }
+      .hero-photo { height: 380px; }
+
+      .trust-bar { grid-template-columns: repeat(2, 1fr); }
+      .trust-item:nth-child(2) { border-right: none; }
+      .trust-item:nth-child(3) { border-bottom: none; }
+      .trust-item:nth-child(4) { border-bottom: none; }
+
+      .services { padding: 64px 24px; }
+      .services-header { flex-direction: column; align-items: flex-start; gap: 20px; }
+      .services-grid { grid-template-columns: 1fr; }
+
+      .how { padding: 64px 24px; }
+      .how-grid { grid-template-columns: 1fr; gap: 40px; }
+
+      .objections { padding: 64px 24px; }
+      .objections-inner { grid-template-columns: 1fr; gap: 40px; }
+
+      .cta-section { padding: 64px 24px; }
+
+      footer { padding: 20px 24px; flex-direction: column; gap: 8px; text-align: center; }
+    }
+
+    @media (max-width: 480px) {
+      .hero-h1 { letter-spacing: -0.025em; }
+      .trust-bar { grid-template-columns: 1fr; }
+      .trust-item { border-right: none; border-bottom: 1px solid var(--rule-dark); }
+      .trust-item:last-child { border-bottom: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <a href="#" class="logo">
+      <span class="logo-mark">Dealz<span class="accent">Direct</span></span>
+      <span class="logo-divider">/</span>
+      <span class="logo-name">James Green</span>
+    </a>
+    <div class="header-right">
+      <a href="https://wa.me/27625478527" class="header-phone" target="_blank" rel="noopener">💬 WhatsApp</a>
+      <a href="mailto:dealzdirect1@gmail.com" class="btn-primary">Get in touch</a>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-content">
+      <div class="hero-eyebrow">
+        <span class="eyebrow-line"></span>
+        <span class="eyebrow-text">Freelance Production Consultant</span>
+      </div>
+      <h1 class="hero-h1">
+        <span class="line-white">Quality<br>production.</span>
+        <span class="line-amber">Real value.</span>
+      </h1>
+      <p class="hero-body">James Green finds the right suppliers, manages production projects from brief to delivery, and makes sure you're not overpaying. <strong>Direct access — no agency markup, no layers, no runaround.</strong></p>
+      <div class="hero-actions">
+        <div class="cta-row">
+          <a href="mailto:dealzdirect1@gmail.com" class="btn-primary">✉️ Email James</a>
+          <a href="https://wa.me/27625478527" class="btn-primary" target="_blank" rel="noopener">💬 WhatsApp</a>
+          <a href="tel:0625478527" class="btn-secondary">📞 Call now</a>
+        </div>
+        <span class="cta-note">Responds within 24 hours · No obligation to proceed</span>
+      </div>
+    </div>
+    <div class="hero-photo">
+      <img src="james-green.jpg" alt="James Green, Production Consultant"
+           onerror="this.style.display='none'; document.querySelector('.hero-photo-placeholder').style.display='flex'">
+      <div class="hero-photo-placeholder" style="display:none">🔍</div>
+      <div class="photo-vignette"></div>
+      <div class="photo-id">
+        <div class="photo-id-name">James Green</div>
+        <div class="photo-id-role">Production Consultant</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TRUST BAR -->
+  <div class="trust-bar">
+    <div class="trust-item"><span class="trust-check">✓</span> You speak directly to James — always</div>
+    <div class="trust-item"><span class="trust-check">✓</span> No agency overhead in your invoice</div>
+    <div class="trust-item"><span class="trust-check">✓</span> Real supplier relationships, built over years</div>
+    <div class="trust-item"><span class="trust-check">✓</span> Quality that matches the spec, every time</div>
+  </div>
+
+  <!-- SERVICES -->
+  <section class="services" id="services">
+    <div class="services-header">
+      <div>
+        <p class="section-eyebrow">What James does</p>
+        <h2 class="section-title">Production consulting<br>that saves you money.</h2>
+      </div>
+      <p class="services-header-right">Every engagement is run personally by James. You get industry experience, real supplier relationships, and someone accountable for the outcome — not a team you'll never meet.</p>
+    </div>
+    <div class="services-grid">
+      <div class="svc">
+        <div class="svc-num">Service 01</div>
+        <h3 class="svc-title">Sourcing & Procurement</h3>
+        <p class="svc-body">Finding the right suppliers at the right price — using real relationships and negotiating experience, not cold searches or guesswork.</p>
+        <span class="svc-tag">↗ Most common engagement</span>
+      </div>
+      <div class="svc">
+        <div class="svc-num">Service 02</div>
+        <h3 class="svc-title">Production Management</h3>
+        <p class="svc-body">End-to-end oversight from brief to delivery. Clear timelines, regular updates, and zero hidden surprises when the invoice arrives.</p>
+        <span class="svc-tag">↗ Full project coverage</span>
+      </div>
+      <div class="svc">
+        <div class="svc-num">Service 03</div>
+        <h3 class="svc-title">Cost Optimization</h3>
+        <p class="svc-body">A clear review of your current production spend — finding where you're overpaying and presenting specific, implementable alternatives.</p>
+        <span class="svc-tag">↗ Fast ROI</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section class="how" id="how">
+    <div class="how-grid">
+      <div class="how-intro">
+        <p class="section-eyebrow">How it works</p>
+        <h2 class="section-title">Simple.<br>Direct.<br>Done.</h2>
+        <p>James keeps engagements simple so time is spent on the work, not the admin.</p>
+      </div>
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">01</div>
+          <div>
+            <h3 class="step-title">You contact James</h3>
+            <p class="step-body">Email or call with your situation — a clear brief or a problem you need help framing. James responds fast, asks the right questions, and is straight with you about what's possible.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">02</div>
+          <div>
+            <h3 class="step-title">James assesses and proposes</h3>
+            <p class="step-body">A clear assessment of what you need, what the options look like, and a straightforward proposal. No bloated decks, no unnecessary discovery phases.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">03</div>
+          <div>
+            <h3 class="step-title">The work gets done</h3>
+            <p class="step-body">James delivers — sourcing, managing, reviewing, or all three. You get quality results and the value that DealZ Direct exists to provide.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- OBJECTION HANDLING -->
+  <section class="objections" id="faq">
+    <div class="objections-inner">
+      <div class="objections-left">
+        <p class="section-eyebrow">Common questions</p>
+        <h2 class="section-title">Things people ask before working with James.</h2>
+        <p>Answered directly — because that's how James works.</p>
+      </div>
+      <div class="qa-list">
+        <div class="qa">
+          <p class="qa-q">"What exactly counts as production consulting?"</p>
+          <p class="qa-a">Anything related to sourcing products or materials, managing a production run, finding or vetting suppliers, or reducing what you spend on physical goods and their delivery. If it involves making, buying, or moving things — James can help.</p>
+        </div>
+        <div class="qa">
+          <p class="qa-q">"Is a freelance consultant as reliable as an agency?"</p>
+          <p class="qa-a">More so, in most cases. You deal directly with the person accountable for the result. There's no layer between James and the outcome — which means problems get caught and fixed early, not reported up a chain.</p>
+        </div>
+        <div class="qa">
+          <p class="qa-q">"How quickly can James start?"</p>
+          <p class="qa-a">Usually fast. Get in touch and James will tell you honestly what his availability looks like and what's realistic for your timeline.</p>
+        </div>
+        <div class="qa">
+          <p class="qa-q">"What does it cost?"</p>
+          <p class="qa-a">It depends on the scope. James is transparent about pricing from the first conversation and will give you a clear, honest number before any work begins.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FINAL CTA -->
+  <section class="cta-section" id="contact">
+    <p class="section-eyebrow">Ready to talk?</p>
+    <h2 class="cta-h2">
+      Get in touch.<br>
+      <span class="amber">It costs nothing to ask.</span>
+    </h2>
+    <p class="cta-sub">James is direct, responsive, and easy to deal with.<br>Tell him what you need and he'll tell you what he can do.</p>
+    <div class="cta-buttons">
+      <a href="mailto:dealzdirect1@gmail.com" class="btn-primary">✉️ dealzdirect1@gmail.com</a>
+      <a href="https://wa.me/27625478527" class="btn-primary" target="_blank" rel="noopener">💬 WhatsApp</a>
+      <a href="tel:0625478527" class="btn-secondary">📞 062 547 8527</a>
+    </div>
+    <p class="cta-note-bottom">Responds within 24 hours · Based in South Africa</p>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <span class="footer-brand">Dealz<span class="accent">Direct</span></span>
+    <p>© 2025 James Green · Freelance Production Consultant</p>
+  </footer>
+
+</body>
+</html>
